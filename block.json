@@ -1,0 +1,41 @@
+{
+	"name": "mamaduka/bookmark-card",
+	"title": "Bookmark Card",
+	"category": "embed",
+	"icon": "smiley",
+	"description": "Turn any URL into a beautiful preview card.",
+	"keywords": [ "bookmark", "card" ],
+	"textdomain": "bookmark-card",
+	"attributes": {
+		"url": {
+			"type": "string",
+			"default": ""
+		},
+		"title": {
+			"type": "string",
+			"default": ""
+		},
+		"description": {
+			"type": "string",
+			"default": ""
+		},
+		"image": {
+			"type": "string",
+			"default": ""
+		},
+		"icon": {
+			"type": "string",
+			"default": ""
+		},
+		"publisher": {
+			"type": "string",
+			"default": ""
+		}
+	},
+	"supports": {
+		"html": false
+	},
+	"editorScript": "file:./build/index.js",
+	"editorStyle": "file:./build/index.css",
+	"style": "file:./build/style-index.css"
+}

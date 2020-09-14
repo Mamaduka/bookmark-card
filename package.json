@@ -1,0 +1,30 @@
+{
+	"name": "mamaduka-bookmark-card",
+	"version": "1.0.0",
+	"description": "Turn any URL into a beautiful preview card.",
+	"author": "George Mamadashvili",
+	"license": "GPL-2.0-or-later",
+	"keywords": [
+		"wordpress"
+	],
+	"homepage": "https://github.com/Mamaduka/bookmark-card",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/Mamaduka/bookmark-card"
+	},
+	"bugs": {
+		"url": "https://github.com/Mamaduka/bookmark-card/issues"
+	},
+	"main": "build/index.js",
+	"devDependencies": {
+		"@wordpress/scripts": "^12.2.0"
+	},
+	"scripts": {
+		"build": "wp-scripts build",
+		"lint:style": "wp-scripts lint-style",
+		"lint:scripts": "wp-scripts lint-js ./src",
+		"lint:pkg-json": "wp-scripts lint-pkg-json",
+		"start": "wp-scripts start",
+		"test:unit": "wp-scripts test-unit-js"
+	}
+}
