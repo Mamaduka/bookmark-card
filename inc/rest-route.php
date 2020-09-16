@@ -17,8 +17,8 @@ use WP_REST_Server;
  */
 function register_route() {
 	register_rest_route(
-		'bookmarkCard/v1',
-		'/preview',
+		'bookmark-card/v1',
+		'/proxy',
 		[
 			[
 				'methods'             => WP_REST_Server::READABLE,
@@ -45,7 +45,11 @@ add_action( 'rest_api_init', __NAMESPACE__ . '\\register_route' );
  */
 function permissions_check() {
 	if ( ! current_user_can( 'edit_posts' ) ) {
-		return new WP_Error( 'rest_forbidden', 'Sorry, you are not allowed to make proxied oEmbed requests.', [ 'status' => rest_authorization_required_code() ] );
+		return new WP_Error(
+			'rest_forbidden',
+			'Sorry, you are not allowed to make proxied bookmark requests.',
+			[ 'status' => rest_authorization_required_code() ]
+		);
 	}
 
 	return true;
