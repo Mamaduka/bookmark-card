@@ -4,12 +4,24 @@
 import { __ } from '@wordpress/i18n';
 import { registerBlockType } from '@wordpress/blocks';
 
+import './style.scss';
+
+/**
+ * Internal dependencies
+ */
+import icon from './icon';
+import Edit from './edit';
+import save from './save';
+
 registerBlockType( 'mamaduka/bookmark-card', {
 	title: __( 'Bookmark Card', 'bookmark-card' ),
-	description: __( 'Turn any URL into a beautiful preview card.', 'bookmark-card' ),
+	description: __(
+		'Turn any URL into a beautiful preview card.',
+		'bookmark-card'
+	),
 	category: 'embed',
 	keywords: [ 'bookmark', 'card' ],
-	icon: 'share-alt2',
+	icon,
 	attributes: {
 		url: {
 			type: 'string',
@@ -37,12 +49,8 @@ registerBlockType( 'mamaduka/bookmark-card', {
 		},
 	},
 	supports: {
-		html: false
+		html: false,
 	},
-	edit() {
-		return <div>Bookmark Card</div>;
-	},
-	save() {
-		return null;
-	}
+	edit: Edit,
+	save,
 } );

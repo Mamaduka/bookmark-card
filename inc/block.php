@@ -39,14 +39,14 @@ function register_block() {
 
 	wp_register_style(
 		'bookmark-card-style',
-		plugins_url( 'build/style.css', PLUGIN_FILE ),
+		plugins_url( 'build/style-index.css', PLUGIN_FILE ),
 		[],
 		$asset_file['version']
 	);
 
 	register_block_type( 'mamaduka/bookmark-card', [
 		'editor_script' => 'bookmark-card-block',
-		'editor_style'  => 'bookmark-card-editor',
+		// 'editor_style'  => 'bookmark-card-editor',
 		'style'         => 'bookmark-card-style',
 	] );
 }
