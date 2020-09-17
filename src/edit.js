@@ -10,6 +10,7 @@ import Controls from './components/controls';
 import Loading from './components/loading';
 import Preview from './components/preview';
 import Placeholder from './components/placeholder';
+import fetchBookmark from './api';
 
 export default class Edit extends Component {
 	constructor() {
@@ -31,8 +32,20 @@ export default class Edit extends Component {
 
 		const { url } = this.state;
 		const { setAttributes } = this.props;
+
 		this.setState( { editingURL: false, fetching: true } );
-		setAttributes( { url } );
+
+		fetchBookmark( url )
+			.then( ( response ) => {
+				setAttributes( { ...response } );
+				this.setState( { editingURL: false, fetching: false } );
+			} )
+			.catch( () => {
+				// @todo display notice.
+				this.setState( { editingURL: true, fetching: false } );
+			} );
+
+		
 	}
 
 	switchBackToURLInput() {

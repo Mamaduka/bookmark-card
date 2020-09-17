@@ -36,7 +36,7 @@ export default class Preview extends Component {
 		/* eslint-disable jsx-a11y/no-static-element-interactions */
 		return (
 			<>
-				<Card bookmark={ bookmark } />
+				<Card { ...bookmark } />
 				{ ! interactive && (
 					<div
 						className="block-library-embed__interactive-overlay"
