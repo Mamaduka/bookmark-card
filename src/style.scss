@@ -15,13 +15,13 @@
 	display: flex;
 	flex-direction: column;
 	position: relative;
-	text-decoration: none;
+	text-decoration: none !important;
 
 	&:hover {
 		--bg-opacity: 1;
 		background-color: #f7fafc;
 		background-color: rgba(247, 250, 252, var(--bg-opacity));
-		text-decoration: none;
+		text-decoration: none !important;
 	}
 }
 
