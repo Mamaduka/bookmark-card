@@ -15,15 +15,16 @@ use function wp_remote_retrieve_response_code;
 /**
  * Tiny parser for site meta tags.
  *
+ * @param string $url  The site URL.
  * @param string $body HTML of the site.
  * @return array $data Site meta data, if exists.
  */
-function get_parsed_data( $body ) {
+function get_parsed_data( $url, $body ) {
 	$data = [
 		'title'       => '',
 		'description' => '',
 		'image'       => '',
-		'publisher'   => '',
+		'publisher'   => parse_url( $url, PHP_URL_HOST ),
 	];
 
 	$rules = [
@@ -31,7 +32,6 @@ function get_parsed_data( $body ) {
 		'url'         => [ 'og:url', 'twitter:url' ],
 		'description' => [ 'og:description', 'description' ],
 		'image'       => [ 'og:image', 'og:image:url', 'twitter:image' ],
-		'publisher'   => [ 'og:site_name' ],
 	];
 
 	$document = new DOMDocument();
@@ -82,7 +82,7 @@ function get_response_data( $url ) {
 	}
 
 	$body = wp_remote_retrieve_body( $response );
-	$data = get_parsed_data( $body );
+	$data = get_parsed_data( $url, $body );
 
 	return $data;
 }
