@@ -44,8 +44,6 @@ export default class Edit extends Component {
 				// @todo display notice.
 				this.setState( { editingURL: true, fetching: false } );
 			} );
-
-		
 	}
 
 	switchBackToURLInput() {
