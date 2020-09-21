@@ -15,7 +15,7 @@ import fetchBookmark from './api';
 export default class Edit extends Component {
 	constructor() {
 		super( ...arguments );
-		this.setUrl = this.setUrl.bind( this );
+		this.onSubmit = this.onSubmit.bind( this );
 		this.switchBackToURLInput = this.switchBackToURLInput.bind( this );
 
 		this.state = {
@@ -25,7 +25,7 @@ export default class Edit extends Component {
 		};
 	}
 
-	setUrl( event ) {
+	onSubmit( event ) {
 		if ( event ) {
 			event.preventDefault();
 		}
@@ -62,7 +62,7 @@ export default class Edit extends Component {
 		if ( showPlaceholder ) {
 			return (
 				<Placeholder
-					onSubmit={ this.setUrl }
+					onSubmit={ this.onSubmit }
 					value={ url }
 					onChange={ ( event ) =>
 						this.setState( { url: event.target.value } )
