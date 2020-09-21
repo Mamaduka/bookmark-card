@@ -1,7 +1,7 @@
 .bookmark-card-container {
 	font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 	border: 1px solid #e2e8f0;
-	border-radius: 0.5rem;
+	border-radius: 8px;
 	box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
 	margin: 0;
 	overflow: hidden;
@@ -35,7 +35,7 @@
 }
 
 .bookmark-card__content {
-	padding: 1rem 1.5rem;
+	padding: 16px 24px;
 }
 
 .bookmark-card__title {
@@ -43,28 +43,28 @@
 	color: #1a202c;
 	color: rgba(26, 32, 44, var(--text-opacity));
 	font-weight: 600;
-	font-size: 1.125rem;
-	padding-bottom: 0.25rem;
+	font-size: 18px;
+	padding-bottom: 4px;
 }
 
 .bookmark-card__description {
 	--text-opacity: 1;
 	color: #4a5568;
 	color: rgba(74, 85, 104, var(--text-opacity));
-	font-size: 1rem;
-	padding-bottom: 0.5rem;
+	font-size: 16px;
+	padding-bottom: 8px;
 }
 
 .bookmark_card__meta {
 	display: flex;
-	font-size: 0.875rem;
-	line-height: 1rem;
+	font-size: 14px;
+	line-height: 16px;
 }
 
 .bookmark_card__meta-icon {
-	width: 1rem;
-	height: 1rem;
-	margin-right: 0.5rem;
+	width: 16px;
+	height: 16px;
+	margin-right: 8px;
 }
 
 .bookmark_card__meta-publisher {
