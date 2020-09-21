@@ -13,22 +13,34 @@
 		},
 		"title": {
 			"type": "string",
+			"source": "text",
+			"selector": ".bookmark-card__title",
 			"default": ""
 		},
 		"description": {
 			"type": "string",
+			"source": "text",
+			"selector": ".bookmark-card__description",
 			"default": ""
 		},
 		"image": {
 			"type": "string",
+			"source": "attribute",
+			"selector": ".bookmark-card__image img",
+			"attribute": "src",
 			"default": ""
 		},
 		"icon": {
 			"type": "string",
+			"source": "attribute",
+			"selector": ".bookmark_card__meta-icon",
+			"attribute": "src",
 			"default": ""
 		},
 		"publisher": {
 			"type": "string",
+			"source": "text",
+			"selector": ".bookmark_card__meta-publisher",
 			"default": ""
 		}
 	},
