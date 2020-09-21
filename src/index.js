@@ -21,7 +21,17 @@ registerBlockType( 'mamaduka/bookmark-card', {
 	),
 	category: 'embed',
 	keywords: [ 'bookmark', 'card' ],
-	icon,
+	example: {
+		attributes: {
+			url: 'https://wordpress.org/',
+			title: 'Blog Tool, Publishing Platform, and CMS – WordPress',
+			description:
+				'Open source software which you can use to easily create a beautiful website, blog, or app.',
+			image: 'https://s.w.org/images/home/screen-themes.png?3',
+			icon: 'https://s.w.org/favicon.ico?2',
+			publisher: 'wordpress.org',
+		},
+	},
 	attributes: {
 		url: {
 			type: 'string',
@@ -51,6 +61,7 @@ registerBlockType( 'mamaduka/bookmark-card', {
 	supports: {
 		html: false,
 	},
+	icon,
 	edit: Edit,
 	save,
 } );
