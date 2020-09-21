@@ -11,6 +11,7 @@ use DOMDocument;
 use function wp_remote_get;
 use function wp_remote_retrieve_body;
 use function wp_remote_retrieve_response_code;
+use function libxml_use_internal_errors;
 
 /**
  * Tiny parser for site meta tags.
@@ -34,8 +35,12 @@ function get_parsed_data( $url, $body ) {
 		'image'       => [ 'og:image', 'og:image:url', 'twitter:image' ],
 	];
 
+	$libxml_error = libxml_use_internal_errors( true );
+
 	$document = new DOMDocument();
 	$document->loadHTML( $body );
+
+	libxml_use_internal_errors( $libxml_error );
 
 	$metatags = $document->getElementsByTagName( 'meta' );
 
