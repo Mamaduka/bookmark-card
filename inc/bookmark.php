@@ -48,20 +48,36 @@ function get_parsed_data( $url, $body ) {
 
 		foreach ( $rules as $name => $values ) {
 
-			if ( $meta->hasAttribute('property')
-				&& in_array( $meta->getAttribute('property'), $values, true )
+			if ( $meta->hasAttribute( 'property' )
+				&& in_array( $meta->getAttribute( 'property' ), $values, true )
 				) {
-					$data[ $name ] = $meta->getAttribute('content');
+					$data[ $name ] = $meta->getAttribute( 'content' );
 					continue 2;
 				}
 
-			if ( $meta->hasAttribute('name')
-				&& in_array( $meta->getAttribute('name'), $values, true )
+			if ( $meta->hasAttribute( 'name' )
+				&& in_array( $meta->getAttribute( 'name' ), $values, true )
 				) {
-					$data[ $name ] = $meta->getAttribute('content');
+					$data[ $name ] = $meta->getAttribute( 'content' );
 					continue 2;
 				}
 		}
+	}
+
+	$links = $document->getElementsByTagName( 'link' );
+
+	if ( $links->length === 0 ) {
+		return $data;
+	}
+
+	// Get the icon.
+	foreach ( $links as $link ) {
+		if ( $link->getAttribute( 'rel' )
+			&& in_array( $link->getAttribute( 'rel' ), [ 'icon', 'shortcut icon' ], true )
+			) {
+				$data['icon'] = $link->getAttribute( 'href' );
+				break;
+			}
 	}
 
 	return $data;
