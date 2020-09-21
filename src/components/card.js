@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/alt-text */
+
 export default function Card( {
 	url,
 	image,
