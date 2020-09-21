@@ -58,6 +58,14 @@ registerBlockType( 'mamaduka/bookmark-card', {
 			default: '',
 		},
 	},
+	styles: [
+		{
+			name: 'default',
+			label: __( 'Default', 'bookmark-card' ),
+			isDefault: true,
+		},
+		{ name: 'horizontal', label: __( 'Horizontal', 'bookmark-card' ) },
+	],
 	supports: {
 		html: false,
 	},

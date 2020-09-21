@@ -7,9 +7,10 @@ export default function Card( {
 	description,
 	icon,
 	publisher,
+	className,
 } ) {
 	return (
-		<figure className="bookmark-card-container">
+		<figure className={ className }>
 			<a className="bookmark-card" href={ url }>
 				{ image && (
 					<div className="bookmark-card__image">

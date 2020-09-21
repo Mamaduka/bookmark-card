@@ -26,5 +26,8 @@
 		"lint:pkg-json": "wp-scripts lint-pkg-json",
 		"start": "wp-scripts start",
 		"test:unit": "wp-scripts test-unit-js"
+	},
+	"dependencies": {
+		"classnames": "^2.2.6"
 	}
 }

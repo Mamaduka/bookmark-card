@@ -52,7 +52,7 @@ export default class Edit extends Component {
 
 	render() {
 		const { url, fetching, editingURL } = this.state;
-		const { attributes, isSelected } = this.props;
+		const { attributes, className, isSelected } = this.props;
 
 		if ( fetching ) {
 			return <Loading />;
@@ -77,7 +77,11 @@ export default class Edit extends Component {
 					showEditButton={ url }
 					switchBackToURLInput={ this.switchBackToURLInput }
 				/>
-				<Preview isSelected={ isSelected } bookmark={ attributes } />
+				<Preview
+					bookmark={ attributes }
+					className={ className }
+					isSelected={ isSelected }
+				/>
 			</>
 		);
 	}

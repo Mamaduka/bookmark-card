@@ -30,13 +30,13 @@ export default class Preview extends Component {
 	}
 
 	render() {
-		const { bookmark } = this.props;
+		const { bookmark, className } = this.props;
 		const { interactive } = this.state;
 
 		/* eslint-disable jsx-a11y/no-static-element-interactions */
 		return (
 			<>
-				<Card { ...bookmark } />
+				<Card { ...bookmark } className={ className } />
 				{ ! interactive && (
 					<div
 						className="block-library-embed__interactive-overlay"
