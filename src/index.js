@@ -80,6 +80,7 @@ registerBlockType( 'mamaduka/bookmark-card', {
 	],
 	supports: {
 		html: false,
+		reusable: false,
 	},
 	icon,
 	edit: Edit,

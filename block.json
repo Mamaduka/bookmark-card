@@ -45,7 +45,8 @@
 		}
 	},
 	"supports": {
-		"html": false
+		"html": false,
+		"reusable": false
 	},
 	"editorScript": "file:./build/index.js",
 	"editorStyle": "file:./build/index.css",
