@@ -18,6 +18,9 @@ Report issues, or collaborate, on [Github](https://github.com/Mamaduka/bookmark-
 
 == Screenshot ==
 
+1. Default card style.
+2. Horizontal card style.
+
 == Changelog ==
 
 = 1.0.0 =
