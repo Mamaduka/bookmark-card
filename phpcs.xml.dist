@@ -20,6 +20,15 @@
 		</properties>
 	</rule>
 
+	<rule ref="WordPress.WP.AlternativeFunctions">
+		<properties>
+			<property name="exclude" type="array">
+				<!-- wp_parse_url() only exists for inconsistency in PHP < 5.4 -->
+				<element value="parse_url" />
+			</property>
+		</properties>
+	</rule>
+
 	<!-- Check for cross-version support for PHP 5.6 and higher. -->
 	<config name="testVersion" value="5.6-" />
 	<rule ref="PHPCompatibilityWP" />

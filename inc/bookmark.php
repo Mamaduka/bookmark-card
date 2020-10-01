@@ -58,14 +58,14 @@ function get_parsed_data( $url, $body ) {
 				) {
 					$data[ $name ] = $meta->getAttribute( 'content' );
 					continue 2;
-				}
+			}
 
 			if ( $meta->hasAttribute( 'name' )
 				&& in_array( $meta->getAttribute( 'name' ), $values, true )
 				) {
 					$data[ $name ] = $meta->getAttribute( 'content' );
 					continue 2;
-				}
+			}
 		}
 	}
 
@@ -82,7 +82,7 @@ function get_parsed_data( $url, $body ) {
 			) {
 				$data['icon'] = $link->getAttribute( 'href' );
 				break;
-			}
+		}
 	}
 
 	return $data;

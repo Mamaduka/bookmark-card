@@ -27,7 +27,8 @@ function register_block() {
 		'bookmark-card-block',
 		plugins_url( 'build/index.js', PLUGIN_FILE ),
 		$asset_file['dependencies'],
-		$asset_file['version']
+		$asset_file['version'],
+		false
 	);
 
 	wp_register_style(
@@ -37,9 +38,12 @@ function register_block() {
 		$asset_file['version']
 	);
 
-	register_block_type( 'mamaduka/bookmark-card', [
-		'editor_script' => 'bookmark-card-block',
-		'style'         => 'bookmark-card-style',
-	] );
+	register_block_type(
+		'mamaduka/bookmark-card',
+		[
+			'editor_script' => 'bookmark-card-block',
+			'style'         => 'bookmark-card-style',
+		]
+	);
 }
 add_action( 'init', __NAMESPACE__ . '\\register_block' );

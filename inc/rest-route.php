@@ -32,7 +32,7 @@ function register_route() {
 						'sanitize_callback' => 'esc_url_raw',
 					],
 				],
-			]
+			],
 		]
 	);
 }
