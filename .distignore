@@ -13,7 +13,7 @@
 .editorconfig
 .eslintrc
 .gitignore
-.phpcs.xml
+phpcs.xml.dist
 CHANGELOG.md
 composer.json
 composer.lock

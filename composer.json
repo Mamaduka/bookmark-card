@@ -1,0 +1,31 @@
+{
+	"name": "mamaduka/bookmark-card",
+	"type": "wordpress-plugin",
+	"license": "GPL-2.0-or-later",
+	"description": "Turn any URL into a beautiful preview card.",
+	"homepage": "https://github.com/Mamaduka/bookmark-card",
+	"keywords": [
+		"gutenberg", "wordpress", "editor"
+	],
+	"support": {
+		"issues": "https://github.com/Mamaduka/bookmark-card/issues"
+	},
+	"require": {
+		"php": "^5.6 || ^7.0"
+	},
+	"require-dev": {
+		"dealerdirect/phpcodesniffer-composer-installer": "^0.7.0",
+		"phpcompatibility/phpcompatibility-wp": "^2.1",
+		"wp-coding-standards/wpcs": "^2.3"
+	},
+	"scripts": {
+		"format": "phpcbf --report-summary --report-source",
+		"lint": "phpcs"
+	},
+	"config": {
+		"platform": {
+			"php": "5.6"
+		},
+		"sort-packages": true
+	}
+}

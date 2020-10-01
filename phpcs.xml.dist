@@ -1,0 +1,45 @@
+<?xml version="1.0" ?>
+<ruleset name="WPCS for Bookmark Card">
+	<config name="minimum_supported_wp_version" value="5.4" />
+
+	<rule ref="WordPress-Core">
+		<exclude name="Generic.Arrays.DisallowShortArraySyntax" />
+		<exclude name="WordPress.PHP.DisallowShortTernary" />
+		<exclude name="WordPress.PHP.YodaConditions.NotYoda" />
+	</rule>
+
+	<rule ref="WordPress-Docs" />
+
+	<rule ref="WordPress-Extra" />
+
+	<rule ref="WordPress.WP.I18n">
+		<properties>
+			<property name="text_domain" type="array">
+				<element value="bookmark-card" />
+			</property>
+		</properties>
+	</rule>
+
+	<!-- Check for cross-version support for PHP 5.6 and higher. -->
+	<config name="testVersion" value="5.6-" />
+	<rule ref="PHPCompatibilityWP" />
+
+	<!-- Show details about violated sniffs -->
+	<arg value="s" />
+
+	<!-- Iterate over all PHP files by default -->
+	<arg name="extensions" value="php" />
+	<file>.</file>
+
+	<!-- Strip the filepaths down to the relevant bit. -->
+	<arg name="basepath" value="./" />
+
+	<!-- Check up to 20 files simultaneously. -->
+	<arg name="parallel" value="20" />
+
+	<!-- Third-party or auto-generated code -->
+	<exclude-pattern>*/build/*</exclude-pattern>
+	<exclude-pattern>*/node_modules/*</exclude-pattern>
+	<exclude-pattern>*/release/*</exclude-pattern>
+	<exclude-pattern>*/vendor/*</exclude-pattern>
+</ruleset>
