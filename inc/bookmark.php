@@ -25,6 +25,7 @@ function get_parsed_data( $url, $body ) {
 		'title'       => '',
 		'description' => '',
 		'image'       => '',
+		'icon'        => '',
 		'publisher'   => parse_url( $url, PHP_URL_HOST ),
 	];
 
