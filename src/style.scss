@@ -89,10 +89,16 @@
 		overflow: hidden;
 	}
 
-	.bookmark-card__title,
-	.bookmark-card__description {
+	.bookmark-card__title {
 		overflow: hidden;
 		text-overflow: ellipsis;
 		white-space: nowrap;
+	}
+
+	.bookmark-card__description {
+		overflow: hidden;
+		display: -webkit-box;
+		-webkit-box-orient: vertical;
+		-webkit-line-clamp: 2;
 	}
 }
