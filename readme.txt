@@ -2,7 +2,7 @@
 Contributors: mamaduka
 Tags: bookmard, card, block editor, gutenberg
 Requires at least: 5.4
-Tested up to: 5.5
+Tested up to: 5.6
 Stable tag: 1.0.0
 Requires PHP: 5.6
 License: GPLv2 or later
