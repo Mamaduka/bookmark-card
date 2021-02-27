@@ -1,7 +1,7 @@
 /**
  * WordPress dependencies
  */
-import { Component } from '@wordpress/element';
+import { useState } from '@wordpress/element';
 
 /**
  * Internal dependencies
@@ -12,77 +12,63 @@ import Preview from './components/preview';
 import Placeholder from './components/placeholder';
 import fetchBookmark from './api';
 
-export default class Edit extends Component {
-	constructor() {
-		super( ...arguments );
-		this.onSubmit = this.onSubmit.bind( this );
-		this.switchBackToURLInput = this.switchBackToURLInput.bind( this );
+export default function Edit( {
+	attributes,
+	className,
+	isSelected,
+	setAttributes,
+} ) {
+	const [ url, setUrl ] = useState( attributes.url );
+	const [ fetching, setFetching ] = useState( false );
+	const [ editingUrl, setEditingUrl ] = useState( false );
 
-		this.state = {
-			fetching: false,
-			editingURL: false,
-			url: this.props.attributes.url,
-		};
-	}
-
-	onSubmit( event ) {
+	function onSubmit( event ) {
 		if ( event ) {
 			event.preventDefault();
 		}
 
-		const { url } = this.state;
-		const { setAttributes } = this.props;
-
-		this.setState( { editingURL: false, fetching: true } );
+		setEditingUrl( false );
+		setFetching( true );
 
 		fetchBookmark( url )
 			.then( ( response ) => {
 				setAttributes( { ...response } );
-				this.setState( { editingURL: false, fetching: false } );
+				setEditingUrl( false );
+				setFetching( false );
 			} )
 			.catch( () => {
 				// @todo display notice.
-				this.setState( { editingURL: true, fetching: false } );
+				setEditingUrl( true );
+				setFetching( false );
 			} );
 	}
 
-	switchBackToURLInput() {
-		this.setState( { editingURL: true } );
+	if ( fetching ) {
+		return <Loading />;
 	}
 
-	render() {
-		const { url, fetching, editingURL } = this.state;
-		const { attributes, className, isSelected } = this.props;
-
-		if ( fetching ) {
-			return <Loading />;
-		}
-
-		const showPlaceholder = ! attributes.title || editingURL;
-		if ( showPlaceholder ) {
-			return (
-				<Placeholder
-					onSubmit={ this.onSubmit }
-					value={ url }
-					onChange={ ( event ) =>
-						this.setState( { url: event.target.value } )
-					}
-				/>
-			);
-		}
-
+	const showPlaceholder = ! attributes.title || editingUrl;
+	if ( showPlaceholder ) {
 		return (
-			<>
-				<Controls
-					showEditButton={ url }
-					switchBackToURLInput={ this.switchBackToURLInput }
-				/>
-				<Preview
-					bookmark={ attributes }
-					className={ className }
-					isSelected={ isSelected }
-				/>
-			</>
+			<Placeholder
+				onSubmit={ onSubmit }
+				value={ url }
+				onChange={ ( event ) => setUrl( event.target.value ) }
+			/>
 		);
 	}
+
+	return (
+		<>
+			<Controls
+				showEditButton={ url }
+				switchBackToURLInput={ () => setEditingUrl( true ) }
+			/>
+			<Preview
+				bookmark={ attributes }
+				className={ className }
+				isSelected={ isSelected }
+			/>
+		</>
+	);
 }
