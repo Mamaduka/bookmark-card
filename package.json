@@ -17,7 +17,7 @@
 	},
 	"main": "build/index.js",
 	"devDependencies": {
-		"@wordpress/scripts": "^12.2.1"
+		"@wordpress/scripts": "^19.2.2"
 	},
 	"scripts": {
 		"build": "wp-scripts build",
@@ -28,6 +28,6 @@
 		"test:unit": "wp-scripts test-unit-js"
 	},
 	"dependencies": {
-		"classnames": "^2.2.6"
+		"classnames": "^2.3.1"
 	}
 }
