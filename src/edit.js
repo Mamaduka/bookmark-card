@@ -2,16 +2,15 @@
  * WordPress dependencies
  */
 import { __, _x } from '@wordpress/i18n';
-import { useState } from '@wordpress/element';
+import { useEffect, useState } from '@wordpress/element';
 import { Button, Placeholder, Spinner, ToolbarGroup } from '@wordpress/components';
 import { BlockControls, BlockIcon } from '@wordpress/block-editor';
 
 /**
  * Internal dependencies
  */
-import Preview from './components/preview';
 import fetchBookmark from './api';
-import icon from './icon';
+import bookmarkIcon from './icon';
 
 export default function Edit( {
 	attributes,
@@ -19,32 +18,48 @@ export default function Edit( {
 	isSelected,
 	setAttributes,
 } ) {
-	const [ url, setUrl ] = useState( attributes.url );
-	const [ fetching, setFetching ] = useState( false );
-	const [ editingUrl, setEditingUrl ] = useState( false );
+	const {
+		url,
+		image,
+		title,
+		description,
+		icon,
+		publisher
+	} = attributes;
+
+	const [ fetchUrl, setFetchUrl ] = useState( url );
+	const [ interactive, setInteractive ] = useState( false );
+	const [ isLoading, setIsLoading ] = useState( false );
+	const [ isEditing, setIsEditing ] = useState( false );
+
+	useEffect( () => {
+		if ( ! isSelected && interactive ) {
+			setInteractive( false );
+		}
+	}, [ isSelected, interactive ] );
 
 	function onSubmit( event ) {
 		if ( event ) {
 			event.preventDefault();
 		}
 
-		setEditingUrl( false );
-		setFetching( true );
+		setIsEditing( false );
+		setIsLoading( true );
 
-		fetchBookmark( url )
+		fetchBookmark( fetchUrl )
 			.then( ( response ) => {
 				setAttributes( { ...response } );
-				setEditingUrl( false );
-				setFetching( false );
+				setIsEditing( false );
+				setIsLoading( false );
 			} )
 			.catch( () => {
 				// @todo display notice.
-				setEditingUrl( true );
-				setFetching( false );
+				setIsEditing( true );
+				setIsLoading( false );
 			} );
 	}
 
-	if ( fetching ) {
+	if ( isLoading ) {
 		return (
 			<div className="wp-block-embed is-loading">
 				<Spinner />
@@ -53,11 +68,10 @@ export default function Edit( {
 		);
 	}
 
-	const showPlaceholder = ! attributes.title || editingUrl;
-	if ( showPlaceholder ) {
+	if ( ! title || isEditing ) {
 		return (
 			<Placeholder
-				icon={ <BlockIcon icon={ icon } /> }
+				icon={ <BlockIcon icon={ bookmarkIcon } /> }
 				label={ __( 'Site URL', 'bookmark-card' ) }
 				className="wp-block-embed"
 				instructions={ __(
@@ -68,11 +82,11 @@ export default function Edit( {
 				<form onSubmit={ onSubmit }>
 					<input
 						type="url"
-						value={ url || '' }
+						value={ fetchUrl || '' }
 						className="components-placeholder__input"
 						aria-label={ __( 'Site URL', 'bookmark-card' ) }
 						placeholder={ __( 'Enter URL here…', 'bookmark-card' ) }
-						onChange={ ( event ) => setUrl( event.target.value) }
+						onChange={ ( event ) => setFetchUrl( event.target.value ) }
 					/>
 					<Button isPrimary type="submit">
 						{ _x( 'Submit', 'button label', 'bookmark-card' ) }
@@ -86,7 +100,7 @@ export default function Edit( {
 		{
 			icon: 'edit',
 			title: __( 'Edit URL', 'bookmark-card' ),
-			onClick: () => setEditingUrl( true ),
+			onClick: () => setIsEditing( true ),
 		},
 	];
 
@@ -95,11 +109,38 @@ export default function Edit( {
 			<BlockControls>
 				<ToolbarGroup controls={ toolbarControls } />
 			</BlockControls>
-			<Preview
-				bookmark={ attributes }
-				className={ className }
-				isSelected={ isSelected }
-			/>
+			<figure className={ className }>
+				<a className="bookmark-card" href={ url }>
+					{ image && (
+						<div className="bookmark-card__image">
+							<img src={ image } />
+						</div>
+					) }
+					<div className="bookmark-card__content">
+						<div className="bookmark-card__title">{ title }</div>
+						<div className="bookmark-card__description">
+							{ description }
+						</div>
+						<div className="bookmark_card__meta">
+							{ icon && (
+								<img
+									className="bookmark_card__meta-icon"
+									src={ icon }
+								/>
+							) }
+							<span className="bookmark_card__meta-publisher">
+								{ publisher }
+							</span>
+						</div>
+					</div>
+				</a>
+			</figure>
+			{ ! interactive && (
+				<div
+					className="block-library-embed__interactive-overlay"
+					onMouseUp={ () => setInteractive( true ) }
+				/>
+			) }
 		</>
 	);
 }
