@@ -21,6 +21,7 @@
 	},
 	"scripts": {
 		"build": "wp-scripts build",
+		"format": "wp-scripts format ./src",
 		"lint:style": "wp-scripts lint-style",
 		"lint:scripts": "wp-scripts lint-js ./src",
 		"lint:pkg-json": "wp-scripts lint-pkg-json",
