@@ -16,11 +16,8 @@
 
 namespace Mamaduka\BookmarkCard;
 
-const PLUGIN_DIR  = __DIR__;
-const PLUGIN_FILE = __FILE__;
-
-require_once PLUGIN_DIR . '/inc/bookmark.php';
-require_once PLUGIN_DIR . '/inc/rest-route.php';
+require_once __DIR__ . '/inc/bookmark.php';
+require_once __DIR__ . '/inc/rest-route.php';
 
 /**
  * Registers the block and required assets.
