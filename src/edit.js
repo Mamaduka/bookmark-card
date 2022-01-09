@@ -49,7 +49,10 @@ export default function Edit( {
 
 	const [ fetchUrl, setFetchUrl ] = useState( url );
 	const [ interactive, setInteractive ] = useState( false );
-	const [ state, dispatch ] = useReducer( reducer, 'DONE' );
+	const [ state, dispatch ] = useReducer( reducer, {
+		isLoading: false,
+		isEditing: false,
+	} );
 
 	useEffect( () => {
 		if ( ! isSelected && interactive ) {
