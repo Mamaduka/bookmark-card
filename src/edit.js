@@ -2,7 +2,7 @@
  * WordPress dependencies
  */
 import { __, _x } from '@wordpress/i18n';
-import { useEffect, useState } from '@wordpress/element';
+import { useEffect, useState, useReducer } from '@wordpress/element';
 import { Button, Placeholder, Spinner, ToolbarGroup } from '@wordpress/components';
 import { BlockControls, BlockIcon } from '@wordpress/block-editor';
 import { getAuthority } from '@wordpress/url';
@@ -12,6 +12,25 @@ import { getAuthority } from '@wordpress/url';
  */
 import fetchUrlData from './api';
 import bookmarkIcon from './icon';
+
+function reducer( state, event ) {
+	const nextState = {
+		EDITING: {
+			isLoading: false,
+			isEditing: true,
+		},
+		LOADING: {
+			isLoading: true,
+			isEditing: false,
+		},
+		DONE: {
+			isLoading: false,
+			isEditing: false,
+		}
+	}
+
+	return nextState[ event ] || state;
+}
 
 export default function Edit( {
 	attributes,
@@ -30,8 +49,7 @@ export default function Edit( {
 
 	const [ fetchUrl, setFetchUrl ] = useState( url );
 	const [ interactive, setInteractive ] = useState( false );
-	const [ isLoading, setIsLoading ] = useState( false );
-	const [ isEditing, setIsEditing ] = useState( false );
+	const [ state, dispatch ] = useReducer( reducer, 'DONE' );
 
 	useEffect( () => {
 		if ( ! isSelected && interactive ) {
@@ -44,8 +62,7 @@ export default function Edit( {
 			event.preventDefault();
 		}
 
-		setIsEditing( false );
-		setIsLoading( true );
+		dispatch( 'LOADING' );
 
 		fetchUrlData( fetchUrl )
 			.then( ( response ) => {
@@ -54,17 +71,14 @@ export default function Edit( {
 					url: fetchUrl,
 					publisher: getAuthority( fetchUrl )
 				} );
-				setIsEditing( false );
-				setIsLoading( false );
+				dispatch( 'DONE' );
 			} )
 			.catch( () => {
-				// @todo display notice.
-				setIsEditing( true );
-				setIsLoading( false );
+				dispatch( 'EDITING' );
 			} );
 	}
 
-	if ( isLoading ) {
+	if ( state.isLoading ) {
 		return (
 			<div className="wp-block-embed is-loading">
 				<Spinner />
@@ -73,7 +87,7 @@ export default function Edit( {
 		);
 	}
 
-	if ( ! title || isEditing ) {
+	if ( ! title || state.isEditing ) {
 		return (
 			<Placeholder
 				icon={ <BlockIcon icon={ bookmarkIcon } /> }
@@ -105,7 +119,7 @@ export default function Edit( {
 		{
 			icon: 'edit',
 			title: __( 'Edit URL', 'bookmark-card' ),
-			onClick: () => setIsEditing( true ),
+			onClick: () => dispatch('EDITING'),
 		},
 	];
 
