@@ -16,9 +16,6 @@
 
 namespace Mamaduka\BookmarkCard;
 
-require_once __DIR__ . '/inc/bookmark.php';
-require_once __DIR__ . '/inc/rest-route.php';
-
 /**
  * Registers the block and required assets.
  *
