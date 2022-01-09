@@ -1,11 +1,11 @@
 /**
  * WordPress dependencies
  */
-import { addQueryArgs } from '@wordpress/url';
 import apiFetch from '@wordpress/api-fetch';
+import { addQueryArgs } from '@wordpress/url';
 
-export default function fetchBookmark( url ) {
+export default function fetchUrlData( url ) {
 	return apiFetch( {
-		path: addQueryArgs( 'bookmark-card/v1/proxy', { url } ),
+		path: addQueryArgs( '/wp-block-editor/v1/url-details', { url } ),
 	} );
 }

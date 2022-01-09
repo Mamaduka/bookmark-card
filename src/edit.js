@@ -5,11 +5,12 @@ import { __, _x } from '@wordpress/i18n';
 import { useEffect, useState } from '@wordpress/element';
 import { Button, Placeholder, Spinner, ToolbarGroup } from '@wordpress/components';
 import { BlockControls, BlockIcon } from '@wordpress/block-editor';
+import { getAuthority } from '@wordpress/url';
 
 /**
  * Internal dependencies
  */
-import fetchBookmark from './api';
+import fetchUrlData from './api';
 import bookmarkIcon from './icon';
 
 export default function Edit( {
@@ -46,9 +47,13 @@ export default function Edit( {
 		setIsEditing( false );
 		setIsLoading( true );
 
-		fetchBookmark( fetchUrl )
+		fetchUrlData( fetchUrl )
 			.then( ( response ) => {
-				setAttributes( { ...response } );
+				setAttributes( {
+					...response,
+					url: fetchUrl,
+					publisher: getAuthority( fetchUrl )
+				} );
 				setIsEditing( false );
 				setIsLoading( false );
 			} )
