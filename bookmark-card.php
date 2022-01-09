@@ -19,6 +19,11 @@ namespace Mamaduka\BookmarkCard;
 // Used for campatibility with WP 5.8.
 if ( ! class_exists( 'WP_REST_URL_Details_Controller' ) ) {
 	require_once __DIR__ . '/compat/class-wp-rest-url-details-controller.php';
+
+	add_action( 'rest_api_init', function() {
+		$url_details_controller = new \WP_REST_URL_Details_Controller();
+		$url_details_controller->register_routes();
+	} );
 }
 
 /**
