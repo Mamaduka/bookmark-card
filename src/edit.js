@@ -23,7 +23,7 @@ function reducer( state, event ) {
 			isLoading: true,
 			isEditing: false,
 		},
-		DONE: {
+		RESOLVED: {
 			isLoading: false,
 			isEditing: false,
 		}
@@ -74,7 +74,7 @@ export default function Edit( {
 					url: fetchUrl,
 					publisher: getAuthority( fetchUrl )
 				} );
-				dispatch( 'DONE' );
+				dispatch( 'RESOLVED' );
 			} )
 			.catch( () => {
 				dispatch( 'EDITING' );
