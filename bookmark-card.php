@@ -16,6 +16,11 @@
 
 namespace Mamaduka\BookmarkCard;
 
+// Used for campatibility with WP 5.8.
+if ( ! class_exists( 'WP_REST_URL_Details_Controller' ) ) {
+	require_once __DIR__ . '/compat/class-wp-rest-url-details-controller.php';
+}
+
 /**
  * Registers the block and required assets.
  *
