@@ -1,11 +1,14 @@
 /* eslint-disable jsx-a11y/alt-text */
+/**
+ * WordPress dependencies
+ */
+import { useBlockProps } from '@wordpress/block-editor';
 
 export default function save({ attributes }) {
-	const { url, image, title, description, icon, publisher, className } =
-		attributes;
+	const { url, image, title, description, icon, publisher } = attributes;
 
 	return (
-		<figure className={className}>
+		<figure {...useBlockProps.save()}>
 			<a className="bookmark-card" href={url}>
 				{image && (
 					<div className="bookmark-card__image">
