@@ -12,7 +12,7 @@ import {
 	Button,
 	Placeholder,
 	Spinner,
-	ToolbarGroup,
+	ToolbarButton,
 } from '@wordpress/components';
 import {
 	BlockControls,
@@ -20,6 +20,7 @@ import {
 	useBlockProps,
 } from '@wordpress/block-editor';
 import { getAuthority } from '@wordpress/url';
+import { pencil, pullLeft, pullRight } from '@wordpress/icons';
 
 /**
  * Internal dependencies
@@ -34,7 +35,8 @@ export default function Edit({
 	isSelected,
 	setAttributes,
 }) {
-	const { url, image, title, description, icon, publisher } = attributes;
+	const { url, image, title, description, icon, publisher, mediaPosition } =
+		attributes;
 
 	const [fetchUrl, setFetchUrl] = useState(url);
 	const [interactive, setInteractive] = useState(false);
@@ -69,6 +71,7 @@ export default function Edit({
 
 	const classes = classnames(className, {
 		'is-loading': state === LOADING,
+		'has-media-on-the-left': 'left' === mediaPosition,
 	});
 
 	const blockProps = useBlockProps({
@@ -111,18 +114,27 @@ export default function Edit({
 		);
 	}
 
-	const toolbarControls = [
-		{
-			icon: 'edit',
-			title: __('Edit URL', 'bookmark-card'),
-			onClick: () => setState(EDITING),
-		},
-	];
-
 	return (
 		<>
-			<BlockControls>
-				<ToolbarGroup controls={toolbarControls} />
+			<BlockControls group="block">
+				<ToolbarButton
+					icon={pencil}
+					title={__('Edit URL', 'bookmark-card')}
+					isActive={state === EDITING}
+					onClick={() => setState(EDITING)}
+				/>
+				<ToolbarButton
+					icon={pullLeft}
+					title={__('Show media on left')}
+					isActive={mediaPosition === 'left'}
+					onClick={() => setAttributes({ mediaPosition: 'left' })}
+				/>
+				<ToolbarButton
+					icon={pullRight}
+					title={__('Show media on right')}
+					isActive={mediaPosition === 'right'}
+					onClick={() => setAttributes({ mediaPosition: 'right' })}
+				/>
 			</BlockControls>
 			<figure {...blockProps}>
 				<a className="bookmark-card" href={url}>

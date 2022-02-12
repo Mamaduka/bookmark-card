@@ -44,6 +44,10 @@
 			"source": "text",
 			"selector": ".bookmark_card__meta-publisher",
 			"default": ""
+		},
+		"mediaPosition": {
+			"type": "string",
+			"default": "right"
 		}
 	},
 	"supports": {

@@ -109,4 +109,10 @@
 			margin-top: auto;
 		}
 	}
+
+	.is-style-horizontal {
+		&.has-media-on-the-left .bookmark-card {
+			flex-direction: row;
+		}
+	}
 }
