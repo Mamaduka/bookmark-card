@@ -79,7 +79,6 @@ export default function Edit({
 		return (
 			<div {...blockProps}>
 				<Spinner />
-				<p>{__('Loading', 'bookmark-card')}</p>
 			</div>
 		);
 	}
