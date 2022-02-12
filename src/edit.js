@@ -1,4 +1,9 @@
 /**
+ * External dependencies
+ */
+import classnames from 'classnames';
+
+/**
  * WordPress dependencies
  */
 import { __, _x } from '@wordpress/i18n';
@@ -9,7 +14,11 @@ import {
 	Spinner,
 	ToolbarGroup,
 } from '@wordpress/components';
-import { BlockControls, BlockIcon } from '@wordpress/block-editor';
+import {
+	BlockControls,
+	BlockIcon,
+	useBlockProps,
+} from '@wordpress/block-editor';
 import { getAuthority } from '@wordpress/url';
 
 /**
@@ -58,9 +67,17 @@ export default function Edit({
 			});
 	}
 
+	const classes = classnames(className, {
+		'is-loading': state === LOADING,
+	});
+
+	const blockProps = useBlockProps({
+		className: classes,
+	});
+
 	if (state === LOADING) {
 		return (
-			<div className="wp-block-embed is-loading">
+			<div {...blockProps}>
 				<Spinner />
 				<p>{__('Loading', 'bookmark-card')}</p>
 			</div>
@@ -70,9 +87,9 @@ export default function Edit({
 	if (!title || state === EDITING) {
 		return (
 			<Placeholder
+				{...blockProps}
 				icon={<BlockIcon icon={bookmarkIcon} />}
 				label={__('Site URL', 'bookmark-card')}
-				className="wp-block-embed"
 				instructions={__(
 					'Enter URL to convert into a bookmark card.',
 					'bookmark-card'
@@ -108,7 +125,7 @@ export default function Edit({
 			<BlockControls>
 				<ToolbarGroup controls={toolbarControls} />
 			</BlockControls>
-			<figure className={className}>
+			<figure {...blockProps}>
 				<a className="bookmark-card" href={url}>
 					{image && (
 						<div className="bookmark-card__image">
@@ -133,13 +150,13 @@ export default function Edit({
 						</div>
 					</div>
 				</a>
+				{!interactive && (
+					<div
+						className="block-library-embed__interactive-overlay"
+						onMouseUp={() => setInteractive(true)}
+					/>
+				)}
 			</figure>
-			{!interactive && (
-				<div
-					className="block-library-embed__interactive-overlay"
-					onMouseUp={() => setInteractive(true)}
-				/>
-			)}
 		</>
 	);
 }

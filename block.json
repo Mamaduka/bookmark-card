@@ -1,5 +1,6 @@
 {
 	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 2,
 	"name": "mamaduka/bookmark-card",
 	"title": "Bookmark Card",
 	"category": "embed",
