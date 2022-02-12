@@ -3,7 +3,7 @@ Contributors: mamaduka
 Tags: bookmard, card, block editor, gutenberg
 Requires at least: 5.8
 Tested up to: 5.9
-Stable tag: 2.0.0
+Stable tag: 2.1.0
 Requires PHP: 5.6
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -26,6 +26,12 @@ Report issues, or collaborate, on [Github](https://github.com/Mamaduka/bookmark-
 2. Horizontal card style.
 
 == Changelog ==
+
+= 2.1.0 - 2022-02-12 =
+* Adds support for custom border-radius.
+* Stacks horizontal Cards on smaller screens.
+* Adds option to change media position for horizontal Cards.
+* Fixes loading state styles when using with Gutenberg plugin.
 
 = 2.0.0 - 2022-02-12 =
 * Bumped minimum required WordPress version to 5.8.

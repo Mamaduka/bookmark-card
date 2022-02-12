@@ -3,7 +3,7 @@
  * Plugin Name:       Bookmark Card
  * Plugin URI:        https://github.com/Mamaduka/bookmark-card
  * Description:       Turn any URL into a beautiful preview card.
- * Version:           2.0.0
+ * Version:           2.1.0
  * Requires at least: 5.8
  * Requires PHP:      5.6
  * Author:            George Mamadashvili
