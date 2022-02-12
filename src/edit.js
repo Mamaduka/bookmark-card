@@ -125,13 +125,13 @@ export default function Edit({
 				/>
 				<ToolbarButton
 					icon={pullLeft}
-					title={__('Show media on left')}
+					title={__('Show media on left', 'bookmark-card')}
 					isActive={mediaPosition === 'left'}
 					onClick={() => setAttributes({ mediaPosition: 'left' })}
 				/>
 				<ToolbarButton
 					icon={pullRight}
-					title={__('Show media on right')}
+					title={__('Show media on right', 'bookmark-card')}
 					isActive={mediaPosition === 'right'}
 					onClick={() => setAttributes({ mediaPosition: 'right' })}
 				/>
