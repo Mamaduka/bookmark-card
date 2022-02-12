@@ -13,6 +13,7 @@
 .editorconfig
 .eslintrc
 .gitignore
+.prettierrc.js
 phpcs.xml.dist
 CHANGELOG.md
 composer.json

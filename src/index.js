@@ -13,7 +13,7 @@ import icon from './icon';
 import edit from './edit';
 import save from './save';
 
-registerBlockType( 'mamaduka/bookmark-card', {
+registerBlockType('mamaduka/bookmark-card', {
 	example: {
 		attributes: {
 			url: 'https://wordpress.org/',
@@ -28,12 +28,12 @@ registerBlockType( 'mamaduka/bookmark-card', {
 	styles: [
 		{
 			name: 'default',
-			label: __( 'Default', 'bookmark-card' ),
+			label: __('Default', 'bookmark-card'),
 			isDefault: true,
 		},
-		{ name: 'horizontal', label: __( 'Horizontal', 'bookmark-card' ) },
+		{ name: 'horizontal', label: __('Horizontal', 'bookmark-card') },
 	],
 	icon,
 	edit,
 	save,
-} );
+});
