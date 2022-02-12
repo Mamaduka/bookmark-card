@@ -2,7 +2,7 @@
  * WordPress dependencies
  */
 import { __, _x } from '@wordpress/i18n';
-import { useEffect, useState, useReducer } from '@wordpress/element';
+import { useEffect, useState } from '@wordpress/element';
 import {
 	Button,
 	Placeholder,
@@ -17,25 +17,7 @@ import { getAuthority } from '@wordpress/url';
  */
 import fetchUrlData from './api';
 import bookmarkIcon from './icon';
-
-function reducer(state, event) {
-	const nextState = {
-		EDITING: {
-			isLoading: false,
-			isEditing: true,
-		},
-		LOADING: {
-			isLoading: true,
-			isEditing: false,
-		},
-		RESOLVED: {
-			isLoading: false,
-			isEditing: false,
-		},
-	};
-
-	return nextState[event] || state;
-}
+import { IDLE, EDITING, LOADING, RESOLVED } from './constants';
 
 export default function Edit({
 	attributes,
@@ -47,10 +29,7 @@ export default function Edit({
 
 	const [fetchUrl, setFetchUrl] = useState(url);
 	const [interactive, setInteractive] = useState(false);
-	const [state, dispatch] = useReducer(reducer, {
-		isLoading: false,
-		isEditing: false,
-	});
+	const [state, setState] = useState(IDLE);
 
 	useEffect(() => {
 		if (!isSelected && interactive) {
@@ -63,7 +42,7 @@ export default function Edit({
 			event.preventDefault();
 		}
 
-		dispatch('LOADING');
+		setState(LOADING);
 
 		fetchUrlData(fetchUrl)
 			.then((response) => {
@@ -72,14 +51,14 @@ export default function Edit({
 					url: fetchUrl,
 					publisher: getAuthority(fetchUrl),
 				});
-				dispatch('RESOLVED');
+				setState(RESOLVED);
 			})
 			.catch(() => {
-				dispatch('EDITING');
+				setState(EDITING);
 			});
 	}
 
-	if (state.isLoading) {
+	if (state === LOADING) {
 		return (
 			<div className="wp-block-embed is-loading">
 				<Spinner />
@@ -88,7 +67,7 @@ export default function Edit({
 		);
 	}
 
-	if (!title || state.isEditing) {
+	if (!title || state === EDITING) {
 		return (
 			<Placeholder
 				icon={<BlockIcon icon={bookmarkIcon} />}
@@ -120,7 +99,7 @@ export default function Edit({
 		{
 			icon: 'edit',
 			title: __('Edit URL', 'bookmark-card'),
-			onClick: () => dispatch('EDITING'),
+			onClick: () => setState(EDITING),
 		},
 	];
 
