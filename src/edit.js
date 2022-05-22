@@ -71,6 +71,7 @@ export default function Edit({
 
 	const classes = classnames(className, {
 		'is-loading': state === LOADING,
+		'is-placeholder': !title || state === EDITING,
 		'has-media-on-the-left': 'left' === mediaPosition,
 	});
 
@@ -88,29 +89,32 @@ export default function Edit({
 
 	if (!title || state === EDITING) {
 		return (
-			<Placeholder
-				{...blockProps}
-				icon={<BlockIcon icon={bookmarkIcon} />}
-				label={__('Site URL', 'bookmark-card')}
-				instructions={__(
-					'Enter URL to convert into a bookmark card.',
-					'bookmark-card'
-				)}
-			>
-				<form onSubmit={onSubmit}>
-					<input
-						type="url"
-						value={fetchUrl || ''}
-						className="components-placeholder__input"
-						aria-label={__('Site URL', 'bookmark-card')}
-						placeholder={__('Enter URL here…', 'bookmark-card')}
-						onChange={(event) => setFetchUrl(event.target.value)}
-					/>
-					<Button isPrimary type="submit">
-						{_x('Submit', 'button label', 'bookmark-card')}
-					</Button>
-				</form>
-			</Placeholder>
+			<div {...blockProps}>
+				<Placeholder
+					icon={<BlockIcon icon={bookmarkIcon} />}
+					label={__('Site URL', 'bookmark-card')}
+					instructions={__(
+						'Enter URL to convert into a bookmark card.',
+						'bookmark-card'
+					)}
+				>
+					<form onSubmit={onSubmit}>
+						<input
+							type="url"
+							value={fetchUrl || ''}
+							className="components-placeholder__input"
+							aria-label={__('Site URL', 'bookmark-card')}
+							placeholder={__('Enter URL here…', 'bookmark-card')}
+							onChange={(event) =>
+								setFetchUrl(event.target.value)
+							}
+						/>
+						<Button isPrimary type="submit">
+							{_x('Submit', 'button label', 'bookmark-card')}
+						</Button>
+					</form>
+				</Placeholder>
+			</div>
 		);
 	}
 
