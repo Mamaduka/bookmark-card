@@ -1,9 +1,9 @@
 === Bookmark Card ===
 Contributors: mamaduka
-Tags: bookmard, card, block editor, gutenberg
+Tags: bookmard, card, block, blocks, link preview
 Requires at least: 5.8
-Tested up to: 5.9
-Stable tag: 2.1.0
+Tested up to: 6.0
+Stable tag: 2.1.1
 Requires PHP: 5.6
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -26,6 +26,10 @@ Report issues, or collaborate, on [Github](https://github.com/Mamaduka/bookmark-
 2. Horizontal card style.
 
 == Changelog ==
+
+= 2.1.2 - 2022-05-22 =
+* Avoid React warning when inserting the block.
+* Don't apply border styles to the placeholder.
 
 = 2.1.0 - 2022-02-12 =
 * Adds support for custom border-radius.
