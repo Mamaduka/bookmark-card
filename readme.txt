@@ -27,7 +27,7 @@ Report issues, or collaborate, on [Github](https://github.com/Mamaduka/bookmark-
 
 == Changelog ==
 
-= 2.1.2 - 2022-05-22 =
+= 2.1.1 - 2022-05-22 =
 * Avoid React warning when inserting the block.
 * Don't apply border styles to the placeholder.
 
