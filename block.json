@@ -48,6 +48,10 @@
 		"mediaPosition": {
 			"type": "string",
 			"default": "right"
+		},
+		"target": {
+			"type": "string",
+			"default": "_blank"
 		}
 	},
 	"supports": {

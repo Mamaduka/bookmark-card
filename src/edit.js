@@ -20,7 +20,7 @@ import {
 	useBlockProps,
 } from '@wordpress/block-editor';
 import { getAuthority } from '@wordpress/url';
-import { pencil, pullLeft, pullRight } from '@wordpress/icons';
+import { customLink, pencil, pullLeft, pullRight } from '@wordpress/icons';
 
 /**
  * Internal dependencies
@@ -35,7 +35,7 @@ export default function Edit({
 	isSelected,
 	setAttributes,
 }) {
-	const { url, image, title, description, icon, publisher, mediaPosition } =
+	const { url, image, title, description, icon, publisher, mediaPosition, target } =
 		attributes;
 
 	const [fetchUrl, setFetchUrl] = useState(url);
@@ -138,6 +138,12 @@ export default function Edit({
 					title={__('Show media on right', 'bookmark-card')}
 					isActive={mediaPosition === 'right'}
 					onClick={() => setAttributes({ mediaPosition: 'right' })}
+				/>
+				<ToolbarButton
+				 icon={customLink}
+				 title={__('Open in new window', 'bookmark-card')}
+				 isActive={target === '_blank'}
+				 onClick={() => setAttributes({ target: target === '_blank' ? '_self' : '_blank' })}
 				/>
 			</BlockControls>
 			<figure {...blockProps}>
