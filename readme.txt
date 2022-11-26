@@ -1,8 +1,8 @@
 === Bookmark Card ===
 Contributors: mamaduka
 Tags: bookmard, card, block, blocks, link preview
-Requires at least: 5.8
-Tested up to: 6.0
+Requires at least: 6.0
+Tested up to: 6.1
 Stable tag: 2.1.1
 Requires PHP: 5.6
 License: GPLv2 or later
@@ -26,6 +26,9 @@ Report issues, or collaborate, on [Github](https://github.com/Mamaduka/bookmark-
 2. Horizontal card style.
 
 == Changelog ==
+
+= 2.2.0 - 2022-11-26 =
+* Update the minimum required WordPress version to 6.0.
 
 = 2.1.1 - 2022-05-22 =
 * Avoid React warning when inserting the block.
