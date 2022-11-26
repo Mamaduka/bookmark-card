@@ -24,6 +24,7 @@ registerBlockType('mamaduka/bookmark-card', {
 			image: 'https://s.w.org/images/home/screen-themes.png?3',
 			icon: 'https://s.w.org/favicon.ico?2',
 			publisher: 'wordpress.org',
+			mediaPosition: 'right',
 		},
 	},
 	styles: [
