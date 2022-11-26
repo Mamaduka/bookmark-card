@@ -29,6 +29,7 @@ Report issues, or collaborate, on [Github](https://github.com/Mamaduka/bookmark-
 
 = 2.2.0 - 2022-11-26 =
 * Update the minimum required WordPress version to 6.0.
+* Remove the URLs Details API compatibility layer.
 
 = 2.1.1 - 2022-05-22 =
 * Avoid React warning when inserting the block.
