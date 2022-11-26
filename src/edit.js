@@ -29,14 +29,17 @@ import fetchUrlData from './api';
 import bookmarkIcon from './icon';
 import { IDLE, EDITING, LOADING, RESOLVED } from './constants';
 
-export default function Edit({
-	attributes,
-	className,
-	isSelected,
-	setAttributes,
-}) {
-	const { url, image, title, description, icon, publisher, mediaPosition } =
-		attributes;
+export default function Edit({ attributes, isSelected, setAttributes }) {
+	const {
+		url,
+		image,
+		title,
+		description,
+		icon,
+		publisher,
+		mediaPosition,
+		className,
+	} = attributes;
 
 	const [fetchUrl, setFetchUrl] = useState(url);
 	const [interactive, setInteractive] = useState(false);
@@ -69,7 +72,8 @@ export default function Edit({
 			});
 	}
 
-	const classes = classnames(className, {
+	const isHorizontalStyle = !!className?.includes('is-style-horizontal');
+	const classes = classnames({
 		'is-loading': state === LOADING,
 		'is-placeholder': !title || state === EDITING,
 		'has-media-on-the-left': 'left' === mediaPosition,
@@ -127,18 +131,26 @@ export default function Edit({
 					isActive={state === EDITING}
 					onClick={() => setState(EDITING)}
 				/>
-				<ToolbarButton
-					icon={pullLeft}
-					title={__('Show media on left', 'bookmark-card')}
-					isActive={mediaPosition === 'left'}
-					onClick={() => setAttributes({ mediaPosition: 'left' })}
-				/>
-				<ToolbarButton
-					icon={pullRight}
-					title={__('Show media on right', 'bookmark-card')}
-					isActive={mediaPosition === 'right'}
-					onClick={() => setAttributes({ mediaPosition: 'right' })}
-				/>
+				{isHorizontalStyle && (
+					<>
+						<ToolbarButton
+							icon={pullLeft}
+							title={__('Show media on left', 'bookmark-card')}
+							isActive={mediaPosition === 'left'}
+							onClick={() =>
+								setAttributes({ mediaPosition: 'left' })
+							}
+						/>
+						<ToolbarButton
+							icon={pullRight}
+							title={__('Show media on right', 'bookmark-card')}
+							isActive={mediaPosition === 'right'}
+							onClick={() =>
+								setAttributes({ mediaPosition: 'right' })
+							}
+						/>
+					</>
+				)}
 			</BlockControls>
 			<figure {...blockProps}>
 				<a className="bookmark-card" href={url}>
