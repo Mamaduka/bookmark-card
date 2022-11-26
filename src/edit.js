@@ -12,11 +12,15 @@ import {
 	Button,
 	Placeholder,
 	Spinner,
+	PanelBody,
 	ToolbarButton,
+	TextControl,
+	ToggleControl,
 } from '@wordpress/components';
 import {
 	BlockControls,
 	BlockIcon,
+	InspectorControls,
 	useBlockProps,
 } from '@wordpress/block-editor';
 import { getAuthority } from '@wordpress/url';
@@ -27,7 +31,7 @@ import { pencil, pullLeft, pullRight } from '@wordpress/icons';
  */
 import fetchUrlData from './api';
 import bookmarkIcon from './icon';
-import { IDLE, EDITING, LOADING, RESOLVED } from './constants';
+import { IDLE, EDITING, LOADING, RESOLVED, NEW_TAB_REL } from './constants';
 
 export default function Edit({ attributes, isSelected, setAttributes }) {
 	const {
@@ -39,6 +43,8 @@ export default function Edit({ attributes, isSelected, setAttributes }) {
 		publisher,
 		mediaPosition,
 		className,
+		linkTarget,
+		rel,
 	} = attributes;
 
 	const [fetchUrl, setFetchUrl] = useState(url);
@@ -152,6 +158,25 @@ export default function Edit({ attributes, isSelected, setAttributes }) {
 					</>
 				)}
 			</BlockControls>
+			<InspectorControls>
+				<PanelBody title={__('Link settings')}>
+					<ToggleControl
+						label={__('Open in new tab')}
+						onChange={(value) =>
+							setAttributes({
+								linkTarget: value ? '_blank' : undefined,
+								rel: value ? NEW_TAB_REL : undefined,
+							})
+						}
+						checked={linkTarget === '_blank'}
+					/>
+					<TextControl
+						label={__('Link rel')}
+						value={rel || ''}
+						onChange={(newRel) => setAttributes({ rel: newRel })}
+					/>
+				</PanelBody>
+			</InspectorControls>
 			<figure {...blockProps}>
 				<a className="bookmark-card" href={url}>
 					{image && (

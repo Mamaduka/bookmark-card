@@ -5,11 +5,17 @@
 import { useBlockProps } from '@wordpress/block-editor';
 
 export default function save({ attributes }) {
-	const { url, image, title, description, icon, publisher } = attributes;
+	const { url, image, title, description, icon, publisher, linkTarget, rel } =
+		attributes;
 
 	return (
 		<figure {...useBlockProps.save()}>
-			<a className="bookmark-card" href={url}>
+			<a
+				className="bookmark-card"
+				href={url}
+				target={linkTarget}
+				rel={rel}
+			>
 				{image && (
 					<div className="bookmark-card__image">
 						<img src={image} />

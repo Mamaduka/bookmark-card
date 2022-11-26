@@ -48,6 +48,15 @@
 		"mediaPosition": {
 			"type": "string",
 			"default": "right"
+		},
+		"linkTarget": {
+			"type": "string"
+		},
+		"rel": {
+			"type": "string",
+			"source": "attribute",
+			"selector": "figure > a",
+			"attribute": "rel"
 		}
 	},
 	"supports": {

@@ -28,6 +28,7 @@ Report issues, or collaborate, on [Github](https://github.com/Mamaduka/bookmark-
 == Changelog ==
 
 = 2.2.0 - 2022-11-26 =
+* Add a setting to open links in a new tab.
 * Update the minimum required WordPress version to 6.0.
 * Remove the URLs Details API compatibility layer.
 * Only display media position controls for horizontal block style.

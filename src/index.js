@@ -13,8 +13,10 @@ import './editor.scss';
 import icon from './icon';
 import edit from './edit';
 import save from './save';
+import deprecated from './deprecated';
 
 registerBlockType('mamaduka/bookmark-card', {
+	icon,
 	example: {
 		attributes: {
 			url: 'https://wordpress.org/',
@@ -35,7 +37,7 @@ registerBlockType('mamaduka/bookmark-card', {
 		},
 		{ name: 'horizontal', label: __('Horizontal', 'bookmark-card') },
 	],
-	icon,
+	deprecated,
 	edit,
 	save,
 });
