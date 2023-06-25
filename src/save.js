@@ -31,6 +31,7 @@ export default function save({ attributes }) {
 							<img
 								className="bookmark_card__meta-icon"
 								src={icon}
+								alt="Bookmark Featured Image"
 							/>
 						)}
 						<span className="bookmark_card__meta-publisher">
