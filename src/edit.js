@@ -181,7 +181,10 @@ export default function Edit({ attributes, isSelected, setAttributes }) {
 				<a className="bookmark-card" href={url}>
 					{image && (
 						<div className="bookmark-card__image">
-							<img src={image} />
+							<img 
+								src={image} 
+								alt="Bookmark Featured Image"
+							/>
 						</div>
 					)}
 					<div className="bookmark-card__content">
@@ -194,6 +197,9 @@ export default function Edit({ attributes, isSelected, setAttributes }) {
 								<img
 									className="bookmark_card__meta-icon"
 									src={icon}
+									alt="Bookmark Favicon"
+									width="512"
+									height="512"
 								/>
 							)}
 							<span className="bookmark_card__meta-publisher">
