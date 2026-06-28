@@ -7,7 +7,7 @@ import clsx from 'clsx';
  * WordPress dependencies
  */
 import { __, _x } from '@wordpress/i18n';
-import { useEffect, useState } from '@wordpress/element';
+import { useState } from '@wordpress/element';
 import {
 	Button,
 	Placeholder,
@@ -48,14 +48,7 @@ export default function Edit({ attributes, isSelected, setAttributes }) {
 	} = attributes;
 
 	const [fetchUrl, setFetchUrl] = useState(url);
-	const [interactive, setInteractive] = useState(false);
 	const [state, setState] = useState(IDLE);
-
-	useEffect(() => {
-		if (!isSelected && interactive) {
-			setInteractive(false);
-		}
-	}, [isSelected, interactive]);
 
 	function onSubmit(event) {
 		if (event) {
@@ -178,7 +171,11 @@ export default function Edit({ attributes, isSelected, setAttributes }) {
 				</PanelBody>
 			</InspectorControls>
 			<figure {...blockProps}>
-				<a className="bookmark-card" href={url}>
+				<a
+					className="bookmark-card"
+					href={url}
+					inert={!isSelected ? 'true' : undefined}
+				>
 					{image && (
 						<div className="bookmark-card__image">
 							<img src={image} />
@@ -202,12 +199,6 @@ export default function Edit({ attributes, isSelected, setAttributes }) {
 						</div>
 					</div>
 				</a>
-				{!interactive && (
-					<div
-						className="block-library-embed__interactive-overlay"
-						onMouseUp={() => setInteractive(true)}
-					/>
-				)}
 			</figure>
 		</>
 	);
