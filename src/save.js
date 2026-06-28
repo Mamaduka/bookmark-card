@@ -1,15 +1,32 @@
-/* eslint-disable jsx-a11y/alt-text */
+/**
+ * External dependencies
+ */
+import clsx from 'clsx';
+
 /**
  * WordPress dependencies
  */
 import { useBlockProps } from '@wordpress/block-editor';
 
 export default function save({ attributes }) {
-	const { url, image, title, description, icon, publisher, linkTarget, rel } =
-		attributes;
+	const {
+		url,
+		image,
+		title,
+		description,
+		icon,
+		publisher,
+		linkTarget,
+		rel,
+		mediaPosition,
+	} = attributes;
+
+	const className = clsx({
+		'has-media-on-the-left': 'left' === mediaPosition,
+	});
 
 	return (
-		<figure {...useBlockProps.save()}>
+		<figure {...useBlockProps.save({ className })}>
 			<a
 				className="bookmark-card"
 				href={url}
@@ -18,7 +35,7 @@ export default function save({ attributes }) {
 			>
 				{image && (
 					<div className="bookmark-card__image">
-						<img src={image} />
+						<img src={image} alt={title} />
 					</div>
 				)}
 				<div className="bookmark-card__content">
@@ -31,6 +48,8 @@ export default function save({ attributes }) {
 							<img
 								className="bookmark_card__meta-icon"
 								src={icon}
+								alt=""
+								role="presentation"
 							/>
 						)}
 						<span className="bookmark_card__meta-publisher">

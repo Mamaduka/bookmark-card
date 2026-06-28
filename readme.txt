@@ -31,6 +31,8 @@ Report issues, or collaborate, on [Github](https://github.com/Mamaduka/bookmark-
 * Update the Block API version to 3.
 * Update the minimum required WordPress version to 6.9.
 * Update the minimum required PHP version to 7.4.
+* Fix the missing `alt` attribute on the card image.
+* Fix the missing "media on the left" class in the saved markup.
 
 = 2.2.1 - 2024-07-16 =
 * Update the minimum required WordPress version to 6.4.
