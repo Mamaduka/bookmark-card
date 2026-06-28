@@ -1,7 +1,6 @@
 # Directories
 /node_modules
 /release
-/vendor
 /build
 
 # Mac OS X
