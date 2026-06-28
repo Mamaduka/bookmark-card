@@ -16,6 +16,7 @@ import {
 	ToolbarButton,
 	TextControl,
 	ToggleControl,
+	__experimentalInputControl as InputControl,
 } from '@wordpress/components';
 import {
 	BlockControls,
@@ -23,15 +24,15 @@ import {
 	InspectorControls,
 	useBlockProps,
 } from '@wordpress/block-editor';
-import { getAuthority } from '@wordpress/url';
+import apiFetch from '@wordpress/api-fetch';
+import { addQueryArgs, getAuthority } from '@wordpress/url';
 import { pencil, pullLeft, pullRight } from '@wordpress/icons';
 
 /**
  * Internal dependencies
  */
-import fetchUrlData from './api';
 import bookmarkIcon from './icon';
-import { IDLE, EDITING, LOADING, RESOLVED, NEW_TAB_REL } from './constants';
+import { STATUS, NEW_TAB_REL } from './constants';
 
 export default function Edit({ attributes, isSelected, setAttributes }) {
 	const {
@@ -48,33 +49,36 @@ export default function Edit({ attributes, isSelected, setAttributes }) {
 	} = attributes;
 
 	const [fetchUrl, setFetchUrl] = useState(url);
-	const [state, setState] = useState(IDLE);
+	const [state, setState] = useState(STATUS.IDLE);
 
-	function onSubmit(event) {
+	async function onSubmit(event) {
 		if (event) {
 			event.preventDefault();
 		}
 
-		setState(LOADING);
+		setState(STATUS.LOADING);
 
-		fetchUrlData(fetchUrl)
-			.then((response) => {
-				setAttributes({
-					...response,
+		try {
+			const response = await apiFetch({
+				path: addQueryArgs('/wp-block-editor/v1/url-details', {
 					url: fetchUrl,
-					publisher: getAuthority(fetchUrl),
-				});
-				setState(RESOLVED);
-			})
-			.catch(() => {
-				setState(EDITING);
+				}),
 			});
+			setAttributes({
+				...response,
+				url: fetchUrl,
+				publisher: getAuthority(fetchUrl),
+			});
+			setState(STATUS.RESOLVED);
+		} catch {
+			setState(STATUS.EDITING);
+		}
 	}
 
 	const isHorizontalStyle = !!className?.includes('is-style-horizontal');
 	const classes = clsx({
-		'is-loading': state === LOADING,
-		'is-placeholder': !title || state === EDITING,
+		'is-loading': state === STATUS.LOADING,
+		'is-placeholder': !title || state === STATUS.EDITING,
 		'has-media-on-the-left': 'left' === mediaPosition,
 	});
 
@@ -82,7 +86,7 @@ export default function Edit({ attributes, isSelected, setAttributes }) {
 		className: classes,
 	});
 
-	if (state === LOADING) {
+	if (state === STATUS.LOADING) {
 		return (
 			<div {...blockProps}>
 				<Spinner />
@@ -90,7 +94,7 @@ export default function Edit({ attributes, isSelected, setAttributes }) {
 		);
 	}
 
-	if (!title || state === EDITING) {
+	if (!title || state === STATUS.EDITING) {
 		return (
 			<div {...blockProps}>
 				<Placeholder
@@ -102,17 +106,24 @@ export default function Edit({ attributes, isSelected, setAttributes }) {
 					)}
 				>
 					<form onSubmit={onSubmit}>
-						<input
+						<InputControl
+							__next40pxDefaultSize
 							type="url"
 							value={fetchUrl || ''}
-							className="components-placeholder__input"
-							aria-label={__('Site URL', 'bookmark-card')}
-							placeholder={__('Enter URL here…', 'bookmark-card')}
-							onChange={(event) =>
-								setFetchUrl(event.target.value)
-							}
+							className="wp-block-mamaduka-bookmark-card__placeholder-input"
+							label={__('Site URL', 'bookmark-card')}
+							hideLabelFromVision
+							placeholder={__(
+								'Enter URL to embed here…',
+								'bookmark-card'
+							)}
+							onChange={setFetchUrl}
 						/>
-						<Button isPrimary type="submit">
+						<Button
+							__next40pxDefaultSize
+							variant="primary"
+							type="submit"
+						>
 							{_x('Submit', 'button label', 'bookmark-card')}
 						</Button>
 					</form>
@@ -127,8 +138,8 @@ export default function Edit({ attributes, isSelected, setAttributes }) {
 				<ToolbarButton
 					icon={pencil}
 					title={__('Edit URL', 'bookmark-card')}
-					isActive={state === EDITING}
-					onClick={() => setState(EDITING)}
+					isActive={state === STATUS.EDITING}
+					onClick={() => setState(STATUS.EDITING)}
 				/>
 				{isHorizontalStyle && (
 					<>
@@ -164,6 +175,7 @@ export default function Edit({ attributes, isSelected, setAttributes }) {
 						checked={linkTarget === '_blank'}
 					/>
 					<TextControl
+						__next40pxDefaultSize
 						label={__('Link rel')}
 						value={rel || ''}
 						onChange={(newRel) => setAttributes({ rel: newRel })}
