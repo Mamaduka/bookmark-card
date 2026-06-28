@@ -17,8 +17,8 @@
 	},
 	"main": "build/index.js",
 	"dependencies": {
-		"@wordpress/icons": "^6.3.0",
-		"classnames": "^2.3.1"
+		"@wordpress/icons": "^15.0.0",
+		"clsx": "^2.1.1"
 	},
 	"devDependencies": {
 		"@wordpress/prettier-config": "^4.49.0",

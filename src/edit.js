@@ -1,7 +1,7 @@
 /**
  * External dependencies
  */
-import classnames from 'classnames';
+import clsx from 'clsx';
 
 /**
  * WordPress dependencies
@@ -79,7 +79,7 @@ export default function Edit({ attributes, isSelected, setAttributes }) {
 	}
 
 	const isHorizontalStyle = !!className?.includes('is-style-horizontal');
-	const classes = classnames({
+	const classes = clsx({
 		'is-loading': state === LOADING,
 		'is-placeholder': !title || state === EDITING,
 		'has-media-on-the-left': 'left' === mediaPosition,
