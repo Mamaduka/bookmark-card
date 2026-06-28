@@ -1,6 +1,6 @@
 === Bookmark Card ===
 Contributors: mamaduka
-Tags: bookmard, card, block, blocks, link preview
+Tags: link preview, bookmark, embed, url preview, open graph
 Requires at least: 6.9
 Tested up to: 7.0
 Stable tag: 2.3.0
@@ -8,11 +8,13 @@ Requires PHP: 7.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Turn any URL into a beautiful preview card.
+Turn any URL into a beautiful link preview card with title, description, and image, just like sharing on social media.
 
 == Description ==
 
-Bookmark Card will help you to display external links in a rich format. Just like, when you share links on Facebook or Twitter.
+Bookmark Card turns any external URL into a rich link preview card showing the page title, description, and thumbnail image, just like links shared on Facebook or Twitter. Add it as a block, paste a link, and get an embed-style preview card automatically.
+
+Choose between default (vertical) and horizontal card styles, customize border radius, control media position, and open links in a new tab.
 
 == Frequently Asked Questions ==
 
