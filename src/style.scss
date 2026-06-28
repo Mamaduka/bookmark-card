@@ -17,9 +17,7 @@
 	text-decoration: none !important;
 
 	&:hover {
-		--bg-opacity: 1;
 		background-color: #f7fafc;
-		background-color: rgba(247, 250, 252, var(--bg-opacity));
 		text-decoration: none !important;
 	}
 
@@ -39,9 +37,7 @@
 }
 
 .bookmark-card__title {
-	--text-opacity: 1;
 	color: #1a202c;
-	color: rgba(26, 32, 44, var(--text-opacity));
 	font-size: 18px;
 	font-weight: 600;
 	line-height: 1.3;
@@ -49,9 +45,7 @@
 }
 
 .bookmark-card__description {
-	--text-opacity: 1;
 	color: #4a5568;
-	color: rgba(74, 85, 104, var(--text-opacity));
 	font-size: 16px;
 	margin-bottom: 8px;
 }
@@ -65,13 +59,11 @@
 .bookmark_card__meta-icon {
 	width: 16px;
 	height: 16px;
-	margin-right: 8px;
+	margin-inline-end: 8px;
 }
 
 .bookmark_card__meta-publisher {
-	--text-opacity: 1;
 	color: #4a5568;
-	color: rgba(74, 85, 104, var(--text-opacity));
 }
 
 @media (min-width: 600px) {
@@ -99,18 +91,17 @@
 		}
 
 		.bookmark-card__description {
-			overflow: hidden;
 			display: -webkit-box;
 			-webkit-box-orient: vertical;
 			-webkit-line-clamp: 2;
+			line-clamp: 2;
+			overflow: hidden;
 		}
 
 		.bookmark_card__meta {
 			margin-top: auto;
 		}
-	}
 
-	.is-style-horizontal {
 		&.has-media-on-the-left .bookmark-card {
 			flex-direction: row;
 		}
