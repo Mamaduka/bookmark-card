@@ -16,9 +16,13 @@
 		"url": "https://github.com/Mamaduka/bookmark-card/issues"
 	},
 	"main": "build/index.js",
+	"dependencies": {
+		"@wordpress/icons": "^6.3.0",
+		"classnames": "^2.3.1"
+	},
 	"devDependencies": {
-		"@wordpress/prettier-config": "^2.5.0",
-		"@wordpress/scripts": "^24.6.0"
+		"@wordpress/prettier-config": "^4.49.0",
+		"@wordpress/scripts": "^32.5.0"
 	},
 	"scripts": {
 		"build": "wp-scripts build",
@@ -28,9 +32,5 @@
 		"lint:pkg-json": "wp-scripts lint-pkg-json",
 		"dev": "wp-scripts start",
 		"test:unit": "wp-scripts test-unit-js"
-	},
-	"dependencies": {
-		"@wordpress/icons": "^6.3.0",
-		"classnames": "^2.3.1"
 	}
 }
