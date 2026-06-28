@@ -78,7 +78,8 @@ export default function Edit({ attributes, isSelected, setAttributes }) {
 	const isHorizontalStyle = !!className?.includes('is-style-horizontal');
 	const classes = clsx({
 		'is-loading': state === STATUS.LOADING,
-		'is-placeholder': !title || state === STATUS.EDITING,
+		'is-placeholder':
+			state !== STATUS.LOADING && (!title || state === STATUS.EDITING),
 		'has-media-on-the-left': 'left' === mediaPosition,
 	});
 
